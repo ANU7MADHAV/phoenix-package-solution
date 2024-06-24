@@ -26,15 +26,15 @@ const Login = () => {
           "/api/login",
           submitData
         );
-
-        if (res.data?.message === "Logged") {
+        console.log("data", res.data);
+        if (res.data?.message === "Logged in") {
           router.push("/admin/dashboard");
         }
       } catch (error) {
         console.log(error);
       }
     };
-    console.log("clicked");
+
     fetchData();
   };
 
