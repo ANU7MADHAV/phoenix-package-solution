@@ -40,12 +40,11 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center items-center rounde shadow-lg border p-5"
-      >
-        <label htmlFor="email">Email</label>
+    <div className="shadow-lg rounded-lg border p-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-2">
+        <label htmlFor="email" className="text-left">
+          Email
+        </label>
         <input
           type="email"
           id="email"
@@ -59,7 +58,10 @@ const Login = () => {
           name="password"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1"
         />
-        <input type="submit" className="bg-blue-500 rounded-lg" />
+        <input
+          type="submit"
+          className="bg-blue-500 rounded-lg px-2 py-1 text-white"
+        />
       </form>
     </div>
   );
