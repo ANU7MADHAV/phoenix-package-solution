@@ -16,7 +16,7 @@ type ValidationSchema = z.infer<typeof signInValidation>;
 
 const Login = () => {
   const router = useRouter();
-  const { handleSubmit } = useForm<ValidationSchema>({
+  const { handleSubmit, register } = useForm<ValidationSchema>({
     resolver: zodResolver(signInValidation),
   });
   const onSubmit: SubmitHandler<ValidationSchema> = (submitData) => {
@@ -26,36 +26,33 @@ const Login = () => {
           "/api/login",
           submitData
         );
-        console.log("hello");
-        console.log(res);
-        console.log("data", res.data.message);
+
         if (res.data?.message === "Logged") {
-          console.log("yes");
+          router.push("/admin/dashboard");
         }
       } catch (error) {
         console.log(error);
       }
     };
+    console.log("clicked");
     fetchData();
   };
 
   return (
     <div className="shadow-lg rounded-lg border p-6">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-2">
-        <label htmlFor="email" className="text-left">
-          Email
-        </label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
-          name="email"
+          {...register("email")}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1"
         />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
-          name="password"
+          {...register("password")}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-2 py-1"
         />
         <input
