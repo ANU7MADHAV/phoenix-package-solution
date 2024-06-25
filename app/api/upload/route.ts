@@ -1,15 +1,18 @@
 import uploadToCloudinary from "@/helper/cloudinary.upload";
-import { NextRequest, NextResponse } from "next/server";
-import primsa from "@/utils/db";
 import prisma from "@/utils/db";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  console.log("hitted");
   // your auth check here if required
 
   const formData = await req.formData();
-  console.log(formData);
+
+  console.log("formData", formData);
+
   const file = formData.get("file") as File;
+  const productName = formData.get("productname") as string;
+
+  console.log("product", productName);
 
   const fileBuffer = await file.arrayBuffer();
 
@@ -21,15 +24,18 @@ export async function POST(req: NextRequest) {
   const fileUri = "data:" + mimeType + ";" + encoding + "," + base64Data;
 
   const res = await uploadToCloudinary(fileUri, file.name);
-  console.log(res);
+  console.log("res", res);
 
   if (res.success && res.result) {
-    // const product = await prisma.product.create({
-    //     name :
-    // })
+    const product = await prisma.product.create({
+      data: {
+        name: productName,
+        imageUrl: res.result.url,
+      },
+    });
     return NextResponse.json({
       message: "success",
-      imgUrl: res.result.secure_url,
+      product,
     });
   } else return NextResponse.json({ message: "failure" });
 }

@@ -13,8 +13,10 @@ const UploadForm = () => {
     }
 
     const formData = new FormData();
-    formData.append("file", file);
 
+    formData.append("file", file);
+    formData.append("productname", productName);
+    console.log("formData", formData);
     const uploadRes = await fetch("/api/upload", {
       method: "POST",
       body: formData,
