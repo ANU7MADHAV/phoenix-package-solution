@@ -13,7 +13,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product {
+model Machines {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String @unique
+  imageUrl String @unique
+}
+
+model Tools {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String @unique
+  imageUrl String @unique
+}
+
+model Materials {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String @unique
   imageUrl String @unique

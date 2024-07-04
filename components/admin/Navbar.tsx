@@ -3,26 +3,30 @@ import Link from "next/link";
 const Navbar = () => {
   const navLinks = [
     {
-      name: "Product1",
-      path: "/",
+      name: "Machines",
+      path: "/admin/machines",
     },
     {
-      name: "Product2",
-      path: "/product2",
+      name: "Tools",
+      path: "/admin/tools",
     },
     {
-      name: "Product3",
-      path: "/product3",
+      name: "Materials",
+      path: "/admin/materials",
     },
   ];
   return (
     <div>
       <ul className="flex p-4 justify-around">
+        <Link href="/admin/dashboard">
+          <li>Home</li>
+        </Link>
         {navLinks.map((link, i) => (
           <Link href={link.path} key={i}>
             <li>{link.name}</li>
           </Link>
         ))}
+        <li>Logout</li>
       </ul>
     </div>
   );

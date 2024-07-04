@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
   console.log("res", res);
 
   if (res.success && res.result) {
-    const product = await prisma.product.create({
+    const product = await prisma.machines.create({
       data: {
         name: productName,
         imageUrl: res.result.url,
