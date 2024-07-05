@@ -17,7 +17,7 @@ const UploadForm = () => {
     formData.append("file", file);
     formData.append("productname", productName);
     console.log("formData", formData);
-    const uploadRes = await fetch("/api/upload", {
+    const uploadRes = await fetch("/api/upload/tools", {
       method: "POST",
       body: formData,
     });

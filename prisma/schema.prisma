@@ -17,16 +17,19 @@ model Machines {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String @unique
   imageUrl String @unique
+  public_id String 
 }
 
 model Tools {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String @unique
   imageUrl String @unique
+  public_id String
 }
 
 model Materials {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String @unique
   imageUrl String @unique
+  public_id String
 }

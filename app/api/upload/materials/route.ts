@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
       data: {
         name: productName,
         imageUrl: res.result.url,
+        public_id : res.result.public_id
       },
     });
     return NextResponse.json({
